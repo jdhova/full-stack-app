@@ -16,14 +16,42 @@ function App() {
     setValues({
       ...values,
       [name]: value
+      
     });
+    console.log('change done',name)
   };
-  const onSubmit = e => {
-    e.preventDefault();
-    console.log('gone')
-    // setErrors(validation(values))
 
-  };
+  const onSubmit = async  (e)  => {
+		e.preventDefault()
+
+    console.log(values)
+
+		const response = await fetch('http://localhost:5000/api/register', {
+      
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+			values
+			}),
+		})
+
+		const data = await response.json()
+        console.log(data, 'values here')
+		if (data.status === 'ok') {
+      console.log(data, 'values here2')
+			// history.push('/login')
+		}
+	}
+
+
+  // const onSubmit = e => {
+  //   e.preventDefault();
+  //   console.log('change done')
+  //   // setErrors(validation(values))
+
+  // };
 
   return (
     <div className='container-fluid py-4'>
