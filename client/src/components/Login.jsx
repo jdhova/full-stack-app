@@ -24,7 +24,7 @@ function Login() {
 			localStorage.setItem('token', data.user)
 			window.location.href = '/dashboard'
 		} else {
-			alert('Please check your username and password')
+			alert('Check email and password')
 		}
 	}
 

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 // import validation from './Validation';
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 function Register() {
-
+  
+  const navigate = useNavigate();
+ 
   
 
   const [name, setName] = useState('')
@@ -31,9 +36,9 @@ function Register() {
 
 		const data = await response.json()
       console.log('one step')
-		// if (data.status === 'ok') {
-		// 	history.push('/login')
-		// }
+		if (data.status === 'ok') {
+      navigate('/login');
+		}
 	}
 
 
