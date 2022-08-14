@@ -1,79 +1,89 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-// const jwtDecode = require('jwt-decode');
-
+import React from 'react'
 
 const Dashboard = () => {
-	const navigate = useNavigate();
-	const [quote, setQuote] = useState('')
-	const [tempQuote, setTempQuote] = useState('')
+  return (
+   
+    <div className='dash-main'>
+        {/* <h3> Welcome to {user.displayName}s'Dash Board</h3> */}
+           
+            <br></br>
+           {/* <h4>  Good Day {user.displayName}  its {today}{check()} </h4>  */}
+            <h4>Kindly fill in hours worked</h4>
+        {/* <Button onClick={handleSignOut}>Logout</Button> */}
 
-	async function populateQuote() {
-		const req = await fetch('http://localhost:5000/api/dashboard', {
-			headers: {
-				'x-access-token': localStorage.getItem('token'),
-			},
-		})
+ 
 
-		const data = await req.json()
-		if (data.status === 'ok') {
-			setQuote(data.quote)
-		} else {
-			alert(data.error)
-		}
-	}
+    <div className='form-container'>
 
-	// useEffect(() => {
-	// 	const token = localStorage.getItem('token')
-	// 	if (token) {
-	// 		// const user = jwtDecode(token)
-	// 		if (!user) {
-	// 			localStorage.removeItem('token')
-  //       navigate('/login');
-	// 		} else {
-	// 			populateQuote()
-	// 		}
-	// 	}
-	// }, [])
 
-	async function updateQuote(event) {
-		event.preventDefault()
+    
+        <div className="form-group">
+            <label htmlFor="inputAddress">Name</label>
+            <input
+            type="text"
+            className="form-control"
+            id="name"
+            placeholder="name"
 
-		const req = await fetch('http://localhost:5000api/dashboard', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'x-access-token': localStorage.getItem('token'),
-			},
-			body: JSON.stringify({
-				quote: tempQuote,
-			}),
-		})
+            // onChange ={(e)=> {
+            //     setUserName(e.target.value)}}
 
-		const data = await req.json()
-		if (data.status === 'ok') {
-			setQuote(tempQuote)
-			setTempQuote('')
-		} else {
-			alert(data.error)
-		}
-	}
+            />
 
-	return (
-		<div>
-      <h2>hello welcometo dash board</h2>
-			<h1>Your quote: {quote || 'No quote found'}</h1>
-			<form onSubmit={updateQuote}>
-				<input
-					type="text"
-					placeholder="Quote"
-					value={tempQuote}
-					onChange={(e) => setTempQuote(e.target.value)}
-				/>
-				<input type="submit" value="Update quote" />
-			</form>
-		</div>
-	)
+        </div>
+        <div className="form-group">
+            <label htmlFor="inputAddress2">Position</label>
+            <input
+            type="text"
+            className="form-control"
+            id="position"
+            placeholder="Position"
+            // onChange ={(e)=> {
+            //     setUserPosition(e.target.value)}}
+            />
+        </div>
+        <div className="form-group">
+            <label htmlFor="inputAddress2">Hours worked</label>
+            <input
+            type="number"
+            className="form-control"
+            id="hoursworked"
+            placeholder="Hours worked"
+            // onChange ={(e)=> {
+            //     setUserHours(e.target.value)}}
+            />
+        </div>
+
+       
+
+        <button 
+        // onClick = {createUser} 
+        type="submit" className="btn btn-primary">
+            Submit
+        </button>
+    </div>
+
+        
+                 <h3 className='work'>Employee work hours </h3>
+       
+        <div className='results'>
+          
+            <h3>Results</h3>
+
+            {/* {users.map((user) => {
+                        return <div className='results2'>
+                            <h3>Name: {user.name}</h3>
+                            <h3>Position: {user.position}</h3>
+                            <h3>Hours worked: {user.hours}</h3>
+                            </div>
+                })} */}
+
+        </div>
+
+          
+
+    </div>
+  )
 }
 
 export default Dashboard
