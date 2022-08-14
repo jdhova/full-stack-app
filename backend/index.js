@@ -6,6 +6,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/user')
+const WorkModel = require('./models/Work')
  const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -14,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 
-// mongoose.connect('mongodb://localhost:27017/full-mern-stack-video')
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/travel')
 
@@ -71,6 +72,18 @@ app.post('/api/login', async (req, res) => {
 		return res.json({ status: 'ok', user: token })
 	} else {
 		return res.json({ status: 'error', user: false })
+	}
+})
+
+app.get('/api/work', async(req,res) => {
+	const work = new WorkModel({name: 'Dor',occupation:'Full Stack',hoursworked: 12})
+
+	try {
+
+		await work.save()
+		res.send('data saved')
+	} catch(err){
+		console.log(err)
 	}
 })
 
