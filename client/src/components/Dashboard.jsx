@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import './Dashboard.css'
 
@@ -6,6 +6,18 @@ const Dashboard = () => {
   const [name, setName] = useState('')
   const [occupation, setOccupation] = useState('')
   const [hoursworked, setHoursworked] = useState(0)
+
+  const [nameList,setNameList] = useState([])
+
+
+  useEffect(() => {
+      Axios.get('http://localhost:5000/api/read')
+      .then((response) => 
+      
+      setNameList(response.data)
+     
+      
+      )},[])
 
   const createHours = () => {
     Axios.post('http://localhost:5000/api/work',
@@ -88,15 +100,15 @@ const Dashboard = () => {
        
         <div className='results'>
           
-            <h3>Results</h3>
+            
 
-            {/* {users.map((user) => {
+            {nameList.map((user) => {
                         return <div className='results2'>
                             <h3>Name: {user.name}</h3>
-                            <h3>Position: {user.position}</h3>
-                            <h3>Hours worked: {user.hours}</h3>
+                            <h3>Occupation {user.occupation}</h3>
+                            <h3>Hours worked: {user.hoursworked}</h3>
                             </div>
-                })} */}
+                })}
 
         </div>
 

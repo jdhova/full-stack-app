@@ -1,6 +1,4 @@
 
-
-
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -93,6 +91,17 @@ app.post('/api/work', async(req,res) => {
 	} catch(err){
 		console.log(err)
 	}
+})
+
+app.get('/api/read', async(req,res) => {
+
+	WorkModel.find({},(err, result) => {
+		
+		if(err) {
+			res.send(err)
+		}
+		res.send(result)
+	})
 })
 
 

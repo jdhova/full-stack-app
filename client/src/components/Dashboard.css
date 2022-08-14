@@ -22,3 +22,19 @@
     margin: 30px;
 
 }
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(3 ,1fr);
+  }
+  
+  .results h3 {
+      display: flex;
+      justify-content: center;
+      
+  }
+  .results2 {
+    padding-left: 20%;
+    padding-top: 50px;
+  }
+  
