@@ -75,8 +75,16 @@ app.post('/api/login', async (req, res) => {
 	}
 })
 
-app.get('/api/work', async(req,res) => {
-	const work = new WorkModel({name: 'Dor',occupation:'Full Stack',hoursworked: 12})
+app.post('/api/work', async(req,res) => {
+
+	const name = req.body.name
+	const occupation = req.body.occupation
+	const hoursworked = req.body.hoursworked
+
+	const work = new WorkModel(
+		{   name: name,
+			occupation:occupation,
+			hoursworked: hoursworked})
 
 	try {
 

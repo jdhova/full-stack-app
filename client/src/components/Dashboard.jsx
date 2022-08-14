@@ -1,6 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios'
+import './Dashboard.css'
 
 const Dashboard = () => {
+  const [name, setName] = useState('')
+  const [occupation, setOccupation] = useState('')
+  const [hoursworked, setHoursworked] = useState(0)
+
+  const createHours = () => {
+    Axios.post('http://localhost:5000/api/work',
+    {
+      name:name,
+      occupation:occupation,
+      hoursworked:hoursworked
+
+    })
+
+
+    console.log('info here',name,occupation,hoursworked)
+  }
   return (
    
     <div className='dash-main'>
@@ -24,9 +42,10 @@ const Dashboard = () => {
             className="form-control"
             id="name"
             placeholder="name"
+            
 
-            // onChange ={(e)=> {
-            //     setUserName(e.target.value)}}
+            onChange ={(e)=> {
+                setName(e.target.value)}}
 
             />
 
@@ -38,8 +57,8 @@ const Dashboard = () => {
             className="form-control"
             id="position"
             placeholder="Position"
-            // onChange ={(e)=> {
-            //     setUserPosition(e.target.value)}}
+            onChange ={(e)=> {
+              setOccupation(e.target.value)}}
             />
         </div>
         <div className="form-group">
@@ -49,15 +68,16 @@ const Dashboard = () => {
             className="form-control"
             id="hoursworked"
             placeholder="Hours worked"
-            // onChange ={(e)=> {
-            //     setUserHours(e.target.value)}}
+            onChange ={(e)=> {
+              setHoursworked(e.target.value)}}
             />
         </div>
 
        
 
         <button 
-        // onClick = {createUser} 
+        
+        onClick = {createHours} 
         type="submit" className="btn btn-primary">
             Submit
         </button>
