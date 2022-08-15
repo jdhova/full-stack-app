@@ -6,6 +6,16 @@
 
 ### FULL STACK MERN APP
 
+### Authur Jude OKAGU -N01407704
+
+### sample email for login
+
+```
+profdor@dor.com
+111111
+
+```
+
 [Trello Board Link](https://trello.com/b/Rjivpi9e/full-stack-app)
 
 ![FULL](images/img1.png)
