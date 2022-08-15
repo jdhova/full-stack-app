@@ -73,6 +73,12 @@ app.post('/api/login', async (req, res) => {
 	}
 })
 
+app.get('/api/logout',async(req,res) =>{
+	
+})
+
+
+
 app.post('/api/work', async(req,res) => {
 
 	const name = req.body.name
@@ -110,6 +116,17 @@ app.delete("/api/delete/:id", async(req,res) =>{
 	res.send('deleted')
 })
 
+
+// app.put('/api/update', async (req, res) => {
+// 	await WorkModel.findOneAndUpdate({
+		
+// 		updated: req.body.workhours,
+		
+// 		// updated.save()
+		
+// 	})
+
+
 app.put('/api/update', async(req,res) => {
 	
 	const newHours = req.body.newHours
@@ -122,13 +139,20 @@ app.put('/api/update', async(req,res) => {
 	
 	try {
 
-		await WorkModel.findById,(id,(err,updatedHours) => {
+		await WorkModel.findById,(id,(err,update) => {
+
+
+			console.log(update,id,'fff',err)
 			// console.log(updatedHours.hoursworked,'and',newHours)
-			updatedHours.hoursworked = newHours
+			update.hoursworked = newHours
 			// console.log(updatedHours.hoursworked,'and',newHours)	
-			updatedHours.save()
+			update.save()
 			res.send('update')
+
+
 		})
+
+		
 	} catch(err){
 		console.log(err,'err')
 	}

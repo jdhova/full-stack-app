@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import Axios from 'axios'
 import './Dashboard.css'
 
+
+
+
 const Dashboard = () => {
+
+  const navigate = useNavigate();
+
   const [name, setName] = useState('')
   const [occupation, setOccupation] = useState('')
   const [hoursworked, setHoursworked] = useState(0)
@@ -29,6 +37,15 @@ const Dashboard = () => {
 
     })
 
+    // const handleSignOut = () => {
+        
+    //   navigate('/login')
+    // }
+     
+    // function logout () {
+    //   navigate('/login')
+    // }
+    
 
     console.log('info here',name,occupation,hoursworked)
   }
@@ -51,12 +68,14 @@ const Dashboard = () => {
   return (
    
     <div className='dash-main'>
+      {/* <button onClick={logout}>Logout</button> */}
         {/* <h3> Welcome to {user.displayName}s'Dash Board</h3> */}
            
             <br></br>
            {/* <h4>  Good Day {user.displayName}  its {today}{check()} </h4>  */}
             <h4>Kindly fill in hours worked</h4>
-        {/* <Button onClick={handleSignOut}>Logout</Button> */}
+
+        <button >Logout</button>
 
  
 
