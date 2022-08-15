@@ -74,7 +74,7 @@ app.post('/api/login', async (req, res) => {
 })
 
 app.get('/api/logout',async(req,res) =>{
-	
+
 })
 
 
@@ -161,7 +161,7 @@ app.put('/api/update', async(req,res) => {
 
 
 
-
+const port = process.env.PORT || 5000
 
 
 app.listen(5000, () => {
