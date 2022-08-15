@@ -32,10 +32,20 @@ code {
 }
 
 .text-center {
-  color:burlywood
+  color:rgb(155, 135, 222)
 }
 
-
+body{
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-image: url('images/pic.jpg');
+  background-repeat: no-repeat;
+  background-size:cover; 
+  min-height: 100vh; 
+  overflow: hidden;
+}
+ 
 /* .App {
   text-align: center;
   display: flex;
