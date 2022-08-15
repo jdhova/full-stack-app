@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [hoursworked, setHoursworked] = useState(0)
 
   const [nameList,setNameList] = useState([])
+  const [newHours,setNewHours] = useState('')
 
 
   useEffect(() => {
@@ -31,6 +32,22 @@ const Dashboard = () => {
 
     console.log('info here',name,occupation,hoursworked)
   }
+
+  const updateHours = (id) => {
+    console.log('check',newHours,'and',id)
+    Axios.put('http://localhost:5000/api/update', {
+      id:id,
+      newHours:newHours
+      
+    })
+  }
+  const deleteHours = (id) => {
+    Axios.delete(`http://localhost:5000/api/delete/${id}`)
+  }
+
+  
+
+
   return (
    
     <div className='dash-main'>
@@ -102,11 +119,24 @@ const Dashboard = () => {
           
             
 
-            {nameList.map((user) => {
-                        return <div className='results2'>
+            {nameList.map((user,key) => {
+                        return <div key={key}
+                            className='results2'>
                             <h3>Name: {user.name}</h3>
                             <h3>Occupation {user.occupation}</h3>
                             <h3>Hours worked: {user.hoursworked}</h3>
+                            
+                            <input type='text' placeholder='Update Hours'
+                            onChange ={(e)=> {
+                              setNewHours(e.target.value)}}
+                              />
+                            <button 
+                            onClick = {
+                              ()=>updateHours(user._id)} 
+                            className='btnu'>Update</button>
+                            <button 
+                            onClick = {
+                              ()=>deleteHours(user._id)}className='btnd'>Delete</button> 
                             </div>
                 })}
 

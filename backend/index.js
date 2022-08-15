@@ -104,6 +104,41 @@ app.get('/api/read', async(req,res) => {
 	})
 })
 
+app.delete("/api/delete/:id", async(req,res) =>{
+	const id = req.params.id
+	await WorkModel.findByIdAndRemove(id).exec()
+	res.send('deleted')
+})
+
+app.put('/api/update', async(req,res) => {
+	
+	const newHours = req.body.newHours
+	const id = req.body.id
+
+	// console.log(req.body.newHours,'and',newHours)
+	// console.log(req.body.id,'and',id)
+	
+
+	
+	try {
+
+		await WorkModel.findById,(id,(err,updatedHours) => {
+			// console.log(updatedHours.hoursworked,'and',newHours)
+			updatedHours.hoursworked = newHours
+			// console.log(updatedHours.hoursworked,'and',newHours)	
+			updatedHours.save()
+			res.send('update')
+		})
+	} catch(err){
+		console.log(err,'err')
+	}
+})
+
+
+
+
+
+
 
 app.listen(5000, () => {
 	console.log('Server started on 5000')
